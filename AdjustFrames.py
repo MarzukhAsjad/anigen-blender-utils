@@ -1,3 +1,6 @@
+import bpy
+
+
 class AdjustFrames:
     """
     A class used to adjust the timings of the strips in the NLA tracks of an armature object.
