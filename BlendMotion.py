@@ -136,10 +136,6 @@ class BlendMotion:
         Prints:
         - The name of the pushed-down strip if successful, or a message if the action was not pushed down
         """
-        # Some adjusted time frames
-        # frame_start = last_frame - 10
-        # frame_end = frame_start + (action.frame_range[1] - action.frame_range[0])
-
         # Push down the action to the NLA tracks
         bpy.ops.nla.action_pushdown(channel_index=-1)
 
@@ -160,41 +156,6 @@ class BlendMotion:
         else:
             print("Action not pushed down to NLA tracks.")
 
-    def fix_strips_timings(self, armature_obj):
-        """
-        This function iterates over all the strips in the
-        NLA tracks of the armature and adjusts the start and
-        end time frames of the strips.
-
-        Parameters:
-        - armature_obj: The armature to be edited
-        """
-
-        # Variable init
-        last_frame = 0
-        nla_tracks = armature_obj.animation_data.nla_tracks
-        current_strip = None
-        # Iterate through the NLA tracks (assuming each track has one strip)
-        for track in nla_tracks:
-            current_strip = track.strips[0]
-            # Initialise the frame start as last frame of previous strip - 10
-            frame_start = max(0, last_frame - 10)
-            # Set the frame end as frame start + duration of the strip
-            frame_end = frame_start + (
-                current_strip.frame_end - current_strip.frame_start
-            )
-            # Print frame end and start
-            print("Frame start:")
-            print(frame_start)
-            print("Frame end: ")
-            print(frame_end)
-            current_strip.frame_start = frame_start
-            current_strip.frame_end = frame_end
-            # Turn auto blend on if not turned on
-            current_strip.use_auto_blend = True
-            # Record the last frame of the last strip of the current NLA track for next iteration use
-            last_frame = frame_end
-
     def run(self):
         """
         The main function that orchestrates the execution of the script
@@ -214,7 +175,6 @@ class BlendMotion:
                 self.push_down_action(armature_obj, uppermost_track, action, last_frame)
             else:
                 print("Action not found:", self.action_name)
-            self.fix_strips_timings(armature_obj)
 
 
 if __name__ == "__main__":
