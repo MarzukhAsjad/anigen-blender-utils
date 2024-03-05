@@ -8,6 +8,8 @@ class AdjustFrames:
     ----------
     armature_obj : obj
         an armature object whose NLA tracks' timings are to be adjusted
+    offset : int
+        the offset to be used to adjust the start and end time frames of the strips
 
     Methods
     -------
@@ -15,7 +17,7 @@ class AdjustFrames:
         Adjusts the start and end time frames of the strips in the NLA tracks of the armature object.
     """
 
-    def __init__(self, armature_obj):
+    def __init__(self, armature_obj, offset):
         """
         Constructs all the necessary attributes for the AdjustFrames object.
 
@@ -26,6 +28,7 @@ class AdjustFrames:
         """
 
         self.armature_obj = armature_obj
+        self.offset = offset
 
     def fix_strips_timings(self):
         """
@@ -33,7 +36,7 @@ class AdjustFrames:
         NLA tracks of the armature and adjusts the start and
         end time frames of the strips.
 
-        The frame start is initialised as the last frame of the previous strip - 10.
+        The frame start is initialised as the last frame of the previous strip - offset.
         The frame end is set as the frame start + duration of the strip.
         If auto blend is not turned on, it is turned on.
         The last frame of the last strip of the current NLA track is recorded for next iteration use.
@@ -46,8 +49,8 @@ class AdjustFrames:
         # Iterate through the NLA tracks (assuming each track has one strip)
         for track in nla_tracks:
             current_strip = track.strips[0]
-            # Initialise the frame start as last frame of previous strip - 10
-            frame_start = max(0, last_frame - 10)
+            # Initialise the frame start as last frame of previous strip - offset
+            frame_start = max(0, last_frame - self.offset)
             # Set the frame end as frame start + duration of the strip
             frame_end = frame_start + (
                 current_strip.frame_end - current_strip.frame_start
@@ -66,5 +69,5 @@ class AdjustFrames:
 
 
 if __name__ == "__main__":
-    blendMotion = AdjustFrames("Idle")
+    blendMotion = AdjustFrames("Idle", offset=10)
     blendMotion.run()
