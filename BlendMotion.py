@@ -90,27 +90,6 @@ class BlendMotion:
         print("Name: " + uppermost_track.name)
         return uppermost_track
 
-    def get_last_frame(self, uppermost_track):
-        """
-        Retrieves the last frame of the last strip in the given NLA track
-
-        Parameters:
-        - uppermost_track: The NLA track to retrieve the last frame from
-
-        Returns:
-        - The last frame of the last strip if the uppermost track is not None, None otherwise
-        """
-        # Get the last strip's last frame from the uppermost action
-        last_frame = None
-        if uppermost_track is not None:
-            print("Uppermost NLA track:", uppermost_track.name)
-            last_strip = uppermost_track.strips[-1]
-            last_frame = last_strip.frame_end
-            print("Last Strip:", last_frame)
-        else:
-            print("No NLA tracks found for the armature object.")
-        return last_frame
-
     def switch_to_nla_editor(self):
         """
         Splits active editor to existing editor and the NLA Editor
@@ -125,7 +104,7 @@ class BlendMotion:
         bpy.ops.screen.area_split(direction="VERTICAL", factor=0.5)
         bpy.context.area.type = "NLA_EDITOR"
 
-    def push_down_action(self, armature_obj, uppermost_track, action, last_frame):
+    def push_down_action(self, armature_obj, uppermost_track, action):
         """
         Pushes down the given action to the NLA tracks and adjusts the time frames
 
@@ -166,13 +145,12 @@ class BlendMotion:
         if armature_obj is not None:
             print(armature_obj.name)
             uppermost_track = self.get_uppermost_nla_track(armature_obj)
-            last_frame = self.get_last_frame(uppermost_track)
             self.switch_to_nla_editor()
             action = bpy.data.actions.get(self.action_name)
             if action is not None:
                 print("Action found:", action.name)
                 armature_obj.animation_data.action = action
-                self.push_down_action(armature_obj, uppermost_track, action, last_frame)
+                self.push_down_action(armature_obj, uppermost_track, action)
             else:
                 print("Action not found:", self.action_name)
 
