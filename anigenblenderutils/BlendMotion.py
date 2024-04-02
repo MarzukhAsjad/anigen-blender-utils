@@ -144,18 +144,18 @@ class BlendMotion:
         - The name of the pushed-down strip if successful, or a message if the action was not pushed down
         """
         # Set the correct context for the operator
-        context = bpy.context.copy()
-        context["object"] = armature_obj
-        context["active_object"] = armature_obj
-        context["selected_objects"] = [armature_obj]
-        context["active_action"] = action
-        context["area"] = next(
-            area for area in bpy.context.screen.areas if area.type == "NLA_EDITOR"
-        )
-
         # Push down the action to the NLA tracks
-        bpy.ops.wm.context_set(context, data_path="area.type")
-        bpy.ops.nla.action_pushdown(channel_index=-1)
+
+        bpy.ops.nla.bake(
+            frame_start=int(action.frame_range[0]),
+            frame_end=int(action.frame_range[1]),
+            only_selected=False,
+            visual_keying=True,
+            clear_constraints=False,
+            clear_parents=False,
+            use_current_action=True,
+            bake_types={"OBJECT"},
+        )
 
         # Update the uppermost_track to the newly created track
         uppermost_track = self.get_uppermost_nla_track(armature_obj)
