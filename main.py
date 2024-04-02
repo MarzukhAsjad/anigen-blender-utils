@@ -1,7 +1,12 @@
-from RenamingAction import RenameAction
-from FindAndImport import FindAndImport
-from BlendMotion import BlendMotion
-from AdjustFrames import AdjustFrames
+import os, sys, bpy
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+if current_dir not in sys.path:
+    sys.path.append(current_dir)
+from anigenblenderutils.RenameAction import RenameAction
+from anigenblenderutils.FindAndImport import FindAndImport
+from anigenblenderutils.BlendMotion import BlendMotion
+from anigenblenderutils.AdjustFrames import AdjustFrames
 
 
 # TODO: Readjust the main function to properly connect the classes
@@ -10,7 +15,9 @@ def main():
     rename_action = RenameAction("Jump Over")
     find_and_import = FindAndImport("C:\\Users\\User\\Desktop\\FYP\\Motions")
     blend_motion = BlendMotion("idle", "Jump Over")
-    adjust_frames = AdjustFrames("idle")  # Create an instance of AdjustFrames
+    adjust_frames = AdjustFrames(
+        "idle", offset=10
+    )  # Create an instance of AdjustFrames
 
     # Call the run method of each instance
     rename_action.run()
