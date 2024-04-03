@@ -1,4 +1,4 @@
-import bpy, os, sys
+import bpy, os, sys, re
 
 
 class FindAndImport:
@@ -62,8 +62,26 @@ class FindAndImport:
             filepaths : list
                 list of filepaths where the fbx files are located
         """
+        armature_name = "Armature"
+        pattern = r"(?<=\\)[^\\]*(?=\.[^.]+$)"
         for filepath in filepaths:
+            blend_dir = os.path.dirname(bpy.data.filepath)
+            # Check if the directory is already in the path
+            if blend_dir not in sys.path:
+                sys.path.append(blend_dir)
+            # Import the fbx file
             bpy.ops.import_scene.fbx(filepath=filepath)
+            # Rename the armature object using regex and the filename
+            armature_obj = bpy.data.objects["Armature"]
+            match = re.search(pattern, filepath)
+            if match:
+                armature_name = match.group(0)
+            print("Armature name [Find And Import]: ", armature_name)
+            armature_obj.name = armature_name
+            # Save the main file
+            bpy.ops.wm.save_mainfile(
+                filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest2.blend"
+            )
             # Rename the primary action for each of these imported fbxs
             # Also make them invisible
 
