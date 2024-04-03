@@ -12,16 +12,16 @@ from anigenblenderutils.AdjustFrames import AdjustFrames
 # TODO: Readjust the main function to properly connect the classes
 def main():
     # Create instances of the classes
-    rename_action = RenameAction("Jump Over")
     find_and_import = FindAndImport("C:\\Users\\User\\Desktop\\FYP\\Motions")
-    blend_motion = BlendMotion("idle", "Jump Over")
+    rename_action = RenameAction("Run")
+    blend_motion = BlendMotion("idle", "Run")
     adjust_frames = AdjustFrames(
         "idle", offset=10
     )  # Create an instance of AdjustFrames
 
     # Call the run method of each instance
-    rename_action.run()
     find_and_import.run()
+    rename_action.run()
     blend_motion.run()
     adjust_frames.fix_strips_timings()  # Call the fix_strips_timings method of the AdjustFrames instance
 
