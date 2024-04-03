@@ -54,33 +54,24 @@ class RenameAction:
 
     # TODO: Instead of switching the whole editor, create a partition for the action editor
     def switch_to_action_editor(self):
-        """
-        Switches to the Action Editor.
-        """
-        # Switch to the Action Editor
         # Get the active area
-
-        # Get the active window
-        window = bpy.context.window_manager.windows[0]
-        # Find the desired area type
         area = None
-        for a in window.screen.areas:
-            if a.type == "DOPESHEET_EDITOR":
-                area = a
+        for window in bpy.context.window_manager.windows:
+            for area in window.screen.areas:
+                if area.type == "DOPESHEET_EDITOR":
+                    break
+            if area is not None:
                 break
 
-        # Check if the area was found
-        if area is not None:
-            # Get the active space within the area
-            space = area.spaces.find("DOPESHEET_EDITOR")
+        # Set the area type and the UI mode
+        area.type = "DOPESHEET_EDITOR"
 
-            # Set the ui_mode property to "ACTION"
-            if space is not None:
-                space.ui_mode = "ACTION"
-            else:
-                print("Dopesheet Editor space not found.")
-        else:
-            print("Dopesheet Editor area not found.")
+        # Find the active space in the Dope Sheet Editor
+        space = area.spaces.active
+        if space is not None:
+            # Set the UI mode to 'ACTION'
+            print("Switching to the Action Editor")
+            space.mode = "ACTION"
 
     def rename_active_action(self, armature_obj):
         """

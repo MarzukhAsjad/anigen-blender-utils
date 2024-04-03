@@ -79,9 +79,9 @@ class FindAndImport:
             print("Armature name [Find And Import]: ", armature_name)
             armature_obj.name = armature_name
             # Save the main file
-            bpy.ops.wm.save_mainfile(
-                filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest2.blend"
-            )
+            # bpy.ops.wm.save_mainfile(
+            #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest2.blend"
+            # )
             # Rename the primary action for each of these imported fbxs
             # Also make them invisible
 

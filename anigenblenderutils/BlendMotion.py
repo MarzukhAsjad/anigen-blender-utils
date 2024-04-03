@@ -163,6 +163,7 @@ class BlendMotion:
         pushed_down_strip = None
         for strip in uppermost_track.strips:
             if strip.action.name == action.name:
+                print("Pushed-down strip:", strip.name)
                 pushed_down_strip = strip
                 break
 
