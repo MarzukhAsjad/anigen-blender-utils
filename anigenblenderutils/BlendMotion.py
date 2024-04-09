@@ -63,7 +63,6 @@ class BlendMotion:
             return None
         else:
             # Set 'Idle' armature object as the active object
-            print("Armature found")
             bpy.context.view_layer.objects.active = armature_obj
             armature_obj.select_set(True)
             return armature_obj
@@ -87,7 +86,6 @@ class BlendMotion:
         while len(uppermost_track.strips) == 0:
             index -= 1
         uppermost_track = nla_tracks[index]
-        print("Name: " + uppermost_track.name)
         return uppermost_track
 
     def switch_to_nla_editor(self):
@@ -145,18 +143,6 @@ class BlendMotion:
         """
         # Set the correct context for the operator
         # Push down the action to the NLA tracks
-        print("Action [Push_down]: " + action.name)
-        # bpy.ops.nla.bake(
-        #     frame_start=int(action.frame_range[0]),
-        #     frame_end=int(action.frame_range[1]),
-        #     only_selected=False,
-        #     visual_keying=True,
-        #     clear_constraints=False,
-        #     clear_parents=False,
-        #     use_current_action=True,
-        #     bake_types={"OBJECT"},
-        # )
-
         if action is not None:
             track = armature_obj.animation_data.nla_tracks.new()
             track.strips.new(action.name, 0, action)
@@ -166,16 +152,12 @@ class BlendMotion:
         # Get the pushed-down strip
         pushed_down_strip = None
         for strip in uppermost_track.strips:
-            print("Strip name:", strip.name)
             if strip.action.name == action.name:
-                print("Pushed-down strip:", strip.name)
                 pushed_down_strip = strip
                 break
 
         if pushed_down_strip is not None:
-            print("Pushed-down strip:", pushed_down_strip.name)
-            # pushed_down_strip.frame_start = frame_start
-            # pushed_down_strip.frame_end = frame_end
+            print("Push down SUCCESS of strip:", pushed_down_strip.name)
             pushed_down_strip.use_auto_blend = True
         else:
             print("Action not pushed down to NLA tracks.")
@@ -193,7 +175,6 @@ class BlendMotion:
             self.switch_to_nla_editor()
             action = bpy.data.actions.get(self.action_name)
             if action is not None:
-                print("Action found:", action.name)
                 armature_obj.animation_data.action = action
                 self.push_down_action(armature_obj, uppermost_track, action)
             else:

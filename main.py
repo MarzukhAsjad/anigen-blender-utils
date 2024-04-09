@@ -11,7 +11,6 @@ from anigenblenderutils.MakeInvisible import MakeInvisible
 from anigenblenderutils.Render import AnimationRenderer as Render
 
 
-# TODO: Readjust the main function to properly connect the classes
 def main():
     # TODO: Make this dynamically take input from external sources
     motions = [
@@ -36,7 +35,6 @@ def main():
         rename_action = RenameAction(motion)
         rename_action.run()
     for motion in motions:
-        print("BOOM")
         blend_motion = BlendMotion("idle", motion)
         blend_motion.run()
 
@@ -48,6 +46,7 @@ def main():
     make_invisible = MakeInvisible()
     make_invisible.run()
     # Render the animation
+    # TODO: Change the path to a dynamic one
     renderer = Render(
         "C:\\Users\\User\\Desktop\\FYP\\Renders",
         "FFMPEG",
