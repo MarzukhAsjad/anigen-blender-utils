@@ -50,7 +50,7 @@ This tool helps blend motions in Blender and render the animation with the given
 2. Configure the paths for the hardcoded data and paths in main.py (line 15, line 27, line 49) and FindAndImport.py (line 92) and save the codes (`TODO: Make these dynamic`)
 3. Run the program by typing the following command in the shell:
    ```shell
-   blender Xbot.blend --background --python C:\\Users\\User\\Desktop\\FYP\\blender-utils\\main.py
+   blender Xbot.blend --background --python C:\Users\User\Desktop\FYP\blender-utils\main.py
    ```
 
 ## Contributing
