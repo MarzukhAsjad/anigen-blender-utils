@@ -145,23 +145,28 @@ class BlendMotion:
         """
         # Set the correct context for the operator
         # Push down the action to the NLA tracks
+        print("Action [Push_down]: " + action.name)
+        # bpy.ops.nla.bake(
+        #     frame_start=int(action.frame_range[0]),
+        #     frame_end=int(action.frame_range[1]),
+        #     only_selected=False,
+        #     visual_keying=True,
+        #     clear_constraints=False,
+        #     clear_parents=False,
+        #     use_current_action=True,
+        #     bake_types={"OBJECT"},
+        # )
 
-        bpy.ops.nla.bake(
-            frame_start=int(action.frame_range[0]),
-            frame_end=int(action.frame_range[1]),
-            only_selected=False,
-            visual_keying=True,
-            clear_constraints=False,
-            clear_parents=False,
-            use_current_action=True,
-            bake_types={"OBJECT"},
-        )
-
+        if action is not None:
+            track = armature_obj.animation_data.nla_tracks.new()
+            track.strips.new(action.name, int(action.frame_range[0]), action)
+            armature_obj.animation_data.action = None
         # Update the uppermost_track to the newly created track
         uppermost_track = self.get_uppermost_nla_track(armature_obj)
         # Get the pushed-down strip
         pushed_down_strip = None
         for strip in uppermost_track.strips:
+            print("Strip name:", strip.name)
             if strip.action.name == action.name:
                 print("Pushed-down strip:", strip.name)
                 pushed_down_strip = strip
