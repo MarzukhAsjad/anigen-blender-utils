@@ -55,12 +55,12 @@ This tool helps blend motions in Blender and render the animation with the given
 
 ## Contributing
 
-If you would like to contribute to this project, please follow these steps:
+If you would like to work on this repository as an AniGEN dev:
 
-1. Fork the repository.
+1. Clone the repository
 2. Create a new branch.
 3. Make your changes and commit them.
-4. Push your changes to your forked repository.
+4. Push your changes to your remote branch
 5. Submit a pull request.
 
 ## License
