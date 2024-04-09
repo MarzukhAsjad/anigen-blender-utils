@@ -7,6 +7,7 @@ from anigenblenderutils.RenameAction import RenameAction
 from anigenblenderutils.FindAndImport import FindAndImport
 from anigenblenderutils.BlendMotion import BlendMotion
 from anigenblenderutils.AdjustFrames import AdjustFrames
+from anigenblenderutils.MakeInvisible import MakeInvisible
 
 
 # TODO: Readjust the main function to properly connect the classes
@@ -18,12 +19,13 @@ def main():
     adjust_frames = AdjustFrames(
         "idle", offset=10
     )  # Create an instance of AdjustFrames
-
+    make_invisible = MakeInvisible()  # Create an instance of MakeInvisible
     # Call the run method of each instance
     find_and_import.run()
     rename_action.run()
     blend_motion.run()
     adjust_frames.fix_strips_timings()  # Call the fix_strips_timings method of the AdjustFrames instance
+    make_invisible.run()  # Call the run method of the MakeInvisible instance
     # Save the main file
     # bpy.ops.wm.save_mainfile(
     #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
