@@ -18,6 +18,7 @@ This tool helps blend motions in Blender and render the animation with the given
    cd anigen-blender-utils
    ```
 4. Setup blender's path to your environment variables
+
    For Windows:
    To do this, redirect to where Blender has been installed. The path on my machine is
 
@@ -35,7 +36,7 @@ This tool helps blend motions in Blender and render the animation with the given
    export [variable_name]=[variable_value]
    ```
 
-5. After the setup, check if the environment variable works by typing the following in your shell:
+6. After the setup, check if the environment variable works by typing the following in your shell:
    ```shell
    blender --version
    ```
