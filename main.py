@@ -13,8 +13,8 @@ from anigenblenderutils.AdjustFrames import AdjustFrames
 def main():
     # Create instances of the classes
     find_and_import = FindAndImport("C:\\Users\\User\\Desktop\\FYP\\Motions")
-    rename_action = RenameAction("Run")
-    blend_motion = BlendMotion("idle", "Run")
+    rename_action = RenameAction("Walking")
+    blend_motion = BlendMotion("idle", "Walking")
     adjust_frames = AdjustFrames(
         "idle", offset=10
     )  # Create an instance of AdjustFrames
@@ -24,6 +24,10 @@ def main():
     rename_action.run()
     blend_motion.run()
     adjust_frames.fix_strips_timings()  # Call the fix_strips_timings method of the AdjustFrames instance
+    # Save the main file
+    # bpy.ops.wm.save_mainfile(
+    #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
+    # )
 
 
 if __name__ == "__main__":

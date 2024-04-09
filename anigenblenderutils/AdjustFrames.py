@@ -46,29 +46,32 @@ class AdjustFrames:
 
         # Variable init
         last_frame = 0
-        print(self.armature_obj.name)
         nla_tracks = self.armature_obj.animation_data.nla_tracks
         current_strip = None
         # Iterate through the NLA tracks (assuming each track has one strip)
         for track in nla_tracks:
             current_strip = track.strips[0]
-            # Initialise the frame start as last frame of previous strip - offset
-            frame_start = max(0, last_frame - self.offset)
-            # Set the frame end as frame start + duration of the strip
-            frame_end = frame_start + (
-                current_strip.frame_end - current_strip.frame_start
-            )
-            # Print frame end and start
-            print("Frame start:")
-            print(frame_start)
-            print("Frame end: ")
-            print(frame_end)
-            current_strip.frame_start = frame_start
-            current_strip.frame_end = frame_end
-            # Turn auto blend on if not turned on
-            current_strip.use_auto_blend = True
-            # Record the last frame of the last strip of the current NLA track for next iteration use
-            last_frame = frame_end
+            # Extract the action from the strip
+            action = current_strip.action
+            # Delete the current strip
+            if current_strip.name != "idle":
+                track.strips.remove(current_strip)
+                # Initialise the frame start as last frame of previous strip - offset
+                frame_start = max(0, last_frame - self.offset)
+                # Paste it to the desired time frame start within the NLA track
+                new_strip = track.strips.new(
+                    name=action.name, action=action, start=int(frame_start)
+                )
+                # DEBUGGING
+                print("frame_start:", new_strip.frame_start)
+                print("frame_end:", new_strip.frame_end)
+                # Set the frame end as frame start + duration of the strip
+                frame_end = frame_start + (new_strip.frame_end - new_strip.frame_start)
+                new_strip.use_auto_blend = True
+                # Record the last frame of the last strip of the current NLA track for next iteration use
+                last_frame = frame_end
+            else:
+                last_frame = current_strip.frame_end
 
 
 if __name__ == "__main__":

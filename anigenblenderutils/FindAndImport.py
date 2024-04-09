@@ -89,7 +89,7 @@ class FindAndImport:
         """
         The main method that finds and imports the fbx files.
         """
-        files = ["Run.fbx", "Walk.fbx"]  # List of filenames to look up (usually fbx)
+        files = ["Walking.fbx"]  # List of filenames to look up (usually fbx)
         filepaths = []  # Sequential list of filepaths stored
         for file in files:
             path = self.find_file(file)

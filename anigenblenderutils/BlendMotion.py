@@ -159,7 +159,7 @@ class BlendMotion:
 
         if action is not None:
             track = armature_obj.animation_data.nla_tracks.new()
-            track.strips.new(action.name, int(action.frame_range[0]), action)
+            track.strips.new(action.name, 0, action)
             armature_obj.animation_data.action = None
         # Update the uppermost_track to the newly created track
         uppermost_track = self.get_uppermost_nla_track(armature_obj)
