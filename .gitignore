@@ -1,0 +1,7 @@
+# Ignore Python bytecode files
+__pycache__/
+/*__pycache__/
+
+# Ignore Blender files
+/*.blend
+/*.blend1
