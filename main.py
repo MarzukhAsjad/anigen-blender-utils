@@ -12,24 +12,36 @@ from anigenblenderutils.MakeInvisible import MakeInvisible
 
 # TODO: Readjust the main function to properly connect the classes
 def main():
-    # Create instances of the classes
+    # TODO: Make this dynamically take input from external sources
+    motions = ["crouched_walking", "Swing_Dancing"]
+
+    # Import the fbx files
+    # TODO: Make the path dynamic or somehow configurable
+    # TODO: Make the importing of the files dynamic as well (check inside code for the class)
     find_and_import = FindAndImport("C:\\Users\\User\\Desktop\\FYP\\Motions")
-    rename_action = RenameAction("Walking")
-    blend_motion = BlendMotion("idle", "Walking")
-    adjust_frames = AdjustFrames(
-        "idle", offset=10
-    )  # Create an instance of AdjustFrames
-    make_invisible = MakeInvisible()  # Create an instance of MakeInvisible
-    # Call the run method of each instance
     find_and_import.run()
-    rename_action.run()
-    blend_motion.run()
-    adjust_frames.fix_strips_timings()  # Call the fix_strips_timings method of the AdjustFrames instance
-    make_invisible.run()  # Call the run method of the MakeInvisible instance
+
+    # Rename the actions and blend the motions for each of the motions
+    for motion in motions:
+        rename_action = RenameAction(motion)
+        rename_action.run()
+    for motion in motions:
+        print("BOOM")
+        blend_motion = BlendMotion("idle", motion)
+        blend_motion.run()
+
+    # Fix the strips timings for all the NLA tracks
+    adjust_frames = AdjustFrames("idle", offset=10)
+    adjust_frames.fix_strips_timings()
+
+    # Make the armature objects invisible in the outliner
+    make_invisible = MakeInvisible()
+    make_invisible.run()
+    # TODO: uncomment the saving code once done
     # Save the main file
-    # bpy.ops.wm.save_mainfile(
-    #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
-    # )
+    bpy.ops.wm.save_mainfile(
+        filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
+    )
 
 
 if __name__ == "__main__":

@@ -89,10 +89,14 @@ class FindAndImport:
         """
         The main method that finds and imports the fbx files.
         """
-        files = ["Walking.fbx"]  # List of filenames to look up (usually fbx)
+        # TODO: Make this dynamic
+        files = [
+            "crouched_walking.fbx",
+            "Swing_Dancing.fbx",
+        ]  # List of filenames to look up (usually fbx)
         filepaths = []  # Sequential list of filepaths stored
-        for file in files:
-            path = self.find_file(file)
+        for file_name in files:
+            path = self.find_file(file_name)
             if path != None:
                 filepaths.append(path)
             print(path)
