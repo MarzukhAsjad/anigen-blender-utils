@@ -8,17 +8,27 @@ from anigenblenderutils.FindAndImport import FindAndImport
 from anigenblenderutils.BlendMotion import BlendMotion
 from anigenblenderutils.AdjustFrames import AdjustFrames
 from anigenblenderutils.MakeInvisible import MakeInvisible
+from anigenblenderutils.Render import AnimationRenderer as Render
 
 
 # TODO: Readjust the main function to properly connect the classes
 def main():
     # TODO: Make this dynamically take input from external sources
-    motions = ["crouched_walking", "Swing_Dancing"]
+    motions = [
+        "backward_happy_walk",
+        "backwards_running",
+        "boxing_left_side_step_walk",
+        "careful_walk",
+        "crouched_walking",
+        "male_brutal_walk",
+    ]
 
     # Import the fbx files
     # TODO: Make the path dynamic or somehow configurable
     # TODO: Make the importing of the files dynamic as well (check inside code for the class)
-    find_and_import = FindAndImport("C:\\Users\\User\\Desktop\\FYP\\Motions")
+    find_and_import = FindAndImport(
+        "C:\\Users\\User\\Desktop\\FYP\\Motions\\0409-first20"
+    )
     find_and_import.run()
 
     # Rename the actions and blend the motions for each of the motions
@@ -37,11 +47,18 @@ def main():
     # Make the armature objects invisible in the outliner
     make_invisible = MakeInvisible()
     make_invisible.run()
-    # TODO: uncomment the saving code once done
-    # Save the main file
-    bpy.ops.wm.save_mainfile(
-        filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
+    # Render the animation
+    renderer = Render(
+        "C:\\Users\\User\\Desktop\\FYP\\Renders",
+        "FFMPEG",
+        1,
+        bpy.context.scene.frame_end,
     )
+    renderer.run()
+    # Saving the main file (not needed for now)
+    # bpy.ops.wm.save_mainfile(
+    #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
+    # )
 
 
 if __name__ == "__main__":

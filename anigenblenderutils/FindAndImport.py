@@ -91,8 +91,12 @@ class FindAndImport:
         """
         # TODO: Make this dynamic
         files = [
+            "backward_happy_walk.fbx",
+            "backwards_running.fxb",
+            "boxing_left_side_step_walk.fbx",
+            "careful_walk.fbx",
             "crouched_walking.fbx",
-            "Swing_Dancing.fbx",
+            "male_brutal_walk.fbx",
         ]  # List of filenames to look up (usually fbx)
         filepaths = []  # Sequential list of filepaths stored
         for file_name in files:

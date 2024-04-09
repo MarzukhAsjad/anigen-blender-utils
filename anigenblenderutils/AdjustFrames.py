@@ -67,8 +67,7 @@ class AdjustFrames:
                 # Set the frame end as frame start + duration of the strip
                 # Get the action's frame duration
                 duration = action.frame_range[1] - action.frame_range[0]
-                duration = min(duration, 75)
-                frame_end = frame_start + (duration)
+                frame_end = frame_start + duration
                 print("frame_end:", new_strip.frame_end)
                 new_strip.use_auto_blend = True
                 # Record the last frame of the last strip of the current NLA track for next iteration use
