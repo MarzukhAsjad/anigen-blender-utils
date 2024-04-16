@@ -9,25 +9,23 @@ from anigenblenderutils.BlendMotion import BlendMotion
 from anigenblenderutils.AdjustFrames import AdjustFrames
 from anigenblenderutils.MakeInvisible import MakeInvisible
 from anigenblenderutils.Render import AnimationRenderer as Render
+from anigenblenderutils.ExportFBX import FBXExporter as Exporter
 
 
 def main():
     # TODO: Make this dynamically take input from external sources
     motions = [
-        "backward_happy_walk",
-        "backwards_running",
-        "boxing_left_side_step_walk",
-        "careful_walk",
-        "crouched_walking",
-        "male_brutal_walk",
+        "male_strut_walk",
+        "running_with_intention",
+        "dodging_to_the_right_place",
+        "hook_punch",
+        "covering_face_in_shame_after_defeat",
     ]
 
     # Import the fbx files
     # TODO: Make the path dynamic or somehow configurable
     # TODO: Make the importing of the files dynamic as well (check inside code for the class)
-    find_and_import = FindAndImport(
-        "C:\\Users\\User\\Desktop\\FYP\\Motions\\0409-first20"
-    )
+    find_and_import = FindAndImport("C:\\Users\\User\\Desktop\\FYP\\Motions\\ybot")
     find_and_import.run()
 
     # Rename the actions and blend the motions for each of the motions
@@ -51,9 +49,14 @@ def main():
         "C:\\Users\\User\\Desktop\\FYP\\Renders",
         "FFMPEG",
         1,
-        bpy.context.scene.frame_end,
+        200,
     )
     renderer.run()
+    # Export the armature as FBX
+    export_fbx = Exporter(
+        "idle", "C:\\Users\\User\\Desktop\\FYP\\Renders\\", "idle.fbx"
+    )
+    export_fbx.run()
     # Saving the main file (not needed for now)
     # bpy.ops.wm.save_mainfile(
     #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
