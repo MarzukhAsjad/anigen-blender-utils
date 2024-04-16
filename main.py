@@ -59,7 +59,7 @@ def main():
     export_fbx.run()
     # Saving the main file (not needed for now)
     # bpy.ops.wm.save_mainfile(
-    #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest4.blend"
+    #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\Xbot2.blend"
     # )
 
 

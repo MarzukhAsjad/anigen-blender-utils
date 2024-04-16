@@ -19,10 +19,10 @@ class FBXExporter:
         """
         Runs the export process.
 
-        Prints "Armature not found!" if the specified armature is not found.
-        Otherwise, sets the active object to the armature, selects the armature,
+        Recursively selects all objects under the specified armature, bakes all NLA tracks into a single animation,
         and exports it as an FBX file.
 
+        Prints "Armature not found!" if the specified armature is not found.
         Prints "Export complete!" when the export process is finished.
         """
         # Find the specified armature
@@ -30,15 +30,43 @@ class FBXExporter:
         if armature is None:
             print("Armature not found!")
         else:
+            # Clear the current selection
+            bpy.ops.object.select_all(action="DESELECT")
+
             # Set the active object to the armature
             bpy.context.view_layer.objects.active = armature
 
             # Select the armature
             armature.select_set(True)
 
-            # Export the armature as FBX
+            # Select all objects recursively under the armature
+            bpy.ops.object.select_hierarchy(direction="CHILD", extend=True)
+
+            # Get all NLA tracks
+            nla_tracks = armature.animation_data.nla_tracks
+
+            # Create a new action to bake the NLA tracks into
+            new_action = bpy.data.actions.new(name="Baked_Action")
+
+            # Set the new action as the current action
+            armature.animation_data.action = new_action
+
+            # Bake all NLA tracks into the new action
+            bpy.ops.nla.bake(
+                frame_start=bpy.context.scene.frame_start,
+                frame_end=bpy.context.scene.frame_end,
+                step=1,
+                only_selected=False,
+                visual_keying=True,
+                clear_constraints=False,
+                use_current_action=True,
+                bake_types={"OBJECT"},
+            )
+
+            # Export the selected objects as FBX
             bpy.ops.export_scene.fbx(
-                filepath=self.export_path + self.export_filename, use_selection=True
+                filepath=self.export_path + self.export_filename,
+                use_selection=True,
             )
 
             print("Export complete!")
