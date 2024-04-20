@@ -2,9 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## Description @ AniGEN devs
+## Description
 
-This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data.
+This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified.
 
 ## Installation
 
