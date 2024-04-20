@@ -4,7 +4,7 @@
 
 ## Description
 
-This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified. It is important to note that I have tried this with Mixamo Animations only. Essentially the character bones will have to match for the the character within the .blend file and the other motions. This uses Non Linear Animation from Blender to blend the motions.
+This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified. It is important to note that I have tried this with Mixamo Animations only. Essentially the character bones will have to match for the the character within the .blend file and the other motions. This uses Non Linear Animation from Blender to blend the motions. Also this has only beend tested on a Windows machine. So unsure if other OS platforms will work the same.
 
 ## Current Features
 1. Importing FBX files (for the motions) automatically
@@ -38,7 +38,7 @@ This tool helps blend motions in Blender and render the animation with the given
    Set the environment variable as "blender" and the environment value as the path.
    So it should be similar. This is the usual setup for windows.
 
-   For Mac:
+   For Mac (Not tested):
    Setup environment variable for MAC uisng the following url: https://phoenixnap.com/kb/set-environment-variable-mac#:~:text=Permanent%20environment%20variables%20are%20added%20to%20the%20.bash_profile%20file%3A
 
    ```shell
@@ -56,7 +56,7 @@ This tool helps blend motions in Blender and render the animation with the given
    ```
    cd anigen-blender-utils
    ```
-2. Configure the paths for the hardcoded data and paths in main.py (line 15, line 27, line 49) and FindAndImport.py (line 92) and save the codes (`TODO: Make these dynamic`)
+2. Configure the paths for the import paths, the render output path and other variables in the config.py
 3. Run the program by typing the following command in the shell:
    ```shell
    blender Xbot.blend --background --python C:\Users\User\Desktop\FYP\blender-utils\main.py
@@ -64,7 +64,7 @@ This tool helps blend motions in Blender and render the animation with the given
 
 ## Contributing
 
-If you would like to work on this repository as an AniGEN dev:
+If you would like to work on this repository:
 
 1. Clone the repository
 2. Create a new branch.
