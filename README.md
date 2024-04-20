@@ -4,7 +4,16 @@
 
 ## Description
 
-This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified.
+This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified. It is important to note that I have tried this with Mixamo Animations only. Essentially the character bones will have to match for the the character within the .blend file and the other motions. This uses Non Linear Animation from Blender to blend the motions.
+
+## Current Features
+1. Importing FBX files (for the motions) automatically
+2. Blending the motions automatically.
+3. Rendering the motions automatically.
+4. Exporting the final FBX (currently it's buggy and will have to be fixed in a newer version)
+
+## Future Features
+1. Fix Exporting the FBX.
 
 ## Installation
 
