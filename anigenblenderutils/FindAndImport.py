@@ -22,7 +22,7 @@ class FindAndImport:
         The main method that finds and imports the fbx files.
     """
 
-    def __init__(self, directory):
+    def __init__(self, directory, fbx_files):
         """
         Constructs all the necessary attributes for the FindAndImport object.
 
@@ -32,6 +32,7 @@ class FindAndImport:
                 directory where the fbx files are located
         """
         self.directory = directory
+        self.fbx_files = fbx_files
 
     def find_file(self, filename):
         """
@@ -90,13 +91,7 @@ class FindAndImport:
         The main method that finds and imports the fbx files.
         """
         # TODO: Make this dynamic
-        files = [
-            "male_strut_walk.fbx",
-            "running_with_intention.fbx",
-            "dodging_to_the_right_place.fbx",
-            "hook_punch.fbx",
-            "covering_face_in_shame_after_defeat.fbx",
-        ]  # List of filenames to look up (usually fbx)
+        files = self.fbx_files  # List of filenames to look up (usually fbx)
         filepaths = []  # Sequential list of filepaths stored
         for file_name in files:
             path = self.find_file(file_name)
