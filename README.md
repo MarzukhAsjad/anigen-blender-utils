@@ -4,7 +4,7 @@
 
 ## Description
 
-This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified. It is important to note that I have tried this with Mixamo Animations only. Essentially the character bones will have to match for the the character within the .blend file and the other motions. This uses Non Linear Animation from Blender to blend the motions. Also this has only beend tested on a Windows machine. So unsure if other OS platforms will work the same.
+This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified. It is important to note that I have tried this with Mixamo Animations only. Essentially the character bones for any motion data will have to match for the the character within the .blend file and the other motions. This uses Non Linear Animation from Blender to blend the motions. Also this has only been tested on a Windows and MacOS machine. So unsure if other OS platforms will work the same.
 
 ## Current Features
 1. Importing FBX files (for the motions) automatically
@@ -17,7 +17,7 @@ This tool helps blend motions in Blender and render the animation with the given
 
 ## Installation
 
-1. Make sure you have Blender 3.1.2 version installed (can be higher)
+1. Make sure you have Blender 3.1.2 version installed (some inconsistency with version 4)
 2. Clone this repository to your local machine.
    ```shell
    git clone https://github.com/MarzukhAsjad/anigen-blender-utils.git
@@ -38,12 +38,8 @@ This tool helps blend motions in Blender and render the animation with the given
    Set the environment variable as "blender" and the environment value as the path.
    So it should be similar. This is the usual setup for windows.
 
-   For Mac (Not tested):
-   Setup environment variable for MAC uisng the following url: https://phoenixnap.com/kb/set-environment-variable-mac#:~:text=Permanent%20environment%20variables%20are%20added%20to%20the%20.bash_profile%20file%3A
-
-   ```shell
-   export [variable_name]=[variable_value]
-   ```
+   For macOS:
+   Setup environment variable for macOS uisng the following url: https://docs.blender.org/manual/en/latest/advanced/command_line/launch/macos.html
 
 6. After the setup, check if the environment variable works by typing the following in your shell:
    ```shell
