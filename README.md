@@ -14,6 +14,10 @@ This tool helps blend motions in Blender and render the animation with the given
 
 ## Future Features
 1. Fix Exporting the FBX.
+2. Support for blending non in-place motions so that displacement is properly adjusted
+3. Camera adjustment when doing non in-place motions
+4. Simple environment generations
+5. More support
 
 ## Installation
 
