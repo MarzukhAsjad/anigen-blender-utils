@@ -4,7 +4,7 @@
 
 ## Description
 
-This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified.
+This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified in the config.py accordingly.
 
 ## Installation
 
@@ -29,7 +29,7 @@ This tool helps blend motions in Blender and render the animation with the given
    Set the environment variable as "blender" and the environment value as the path.
    So it should be similar. This is the usual setup for windows.
 
-   For Mac:
+   For Mac (Not tested):
    Setup environment variable for MAC uisng the following url: https://phoenixnap.com/kb/set-environment-variable-mac#:~:text=Permanent%20environment%20variables%20are%20added%20to%20the%20.bash_profile%20file%3A
 
    ```shell
