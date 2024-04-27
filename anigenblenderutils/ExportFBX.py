@@ -2,6 +2,30 @@ import bpy
 
 
 class FBXExporter:
+    """
+    A class for exporting an armature and its animations as an FBX file.
+
+    ...
+
+    Attributes:
+    ----------
+    armature_name : str
+        The name of the armature object to export.
+    export_path : str
+        The path where the exported FBX file will be saved.
+    export_filename : str
+        The filename of the exported FBX file.
+
+    Methods:
+    -------
+    __init__(self, armature_name, export_path, export_filename):
+        Initializes the FBXExporter class with the given armature name, export path, and export filename.
+    export_fbx(self):
+        Runs the export process.
+    run(self):
+        The main method that runs the export process.
+    """
+
     def __init__(self, armature_name, export_path, export_filename):
         """
         Initializes the FBXExporter class.
@@ -15,7 +39,7 @@ class FBXExporter:
         self.export_path = export_path
         self.export_filename = export_filename
 
-    def run(self):
+    def export_fbx(self):
         """
         Runs the export process.
 
@@ -70,6 +94,12 @@ class FBXExporter:
             )
 
             print("Export complete!")
+            
+    def run(self):
+        """
+        The main method that runs the export process.
+        """
+        self.export_fbx()
 
 
 if __name__ == "__main__":

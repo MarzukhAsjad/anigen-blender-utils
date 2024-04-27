@@ -62,11 +62,11 @@ class AdjustFrames:
                 new_strip = track.strips.new(
                     name=action.name, action=action, start=int(frame_start)
                 )
-                # DEBUGGING
                 print("frame_start:", new_strip.frame_start)
-                # Set the frame end as frame start + duration of the strip
+
                 # Get the action's frame duration
                 duration = action.frame_range[1] - action.frame_range[0]
+                # Set the frame end as frame start + duration of the strip
                 frame_end = frame_start + duration
                 print("frame_end:", new_strip.frame_end)
                 new_strip.use_auto_blend = True

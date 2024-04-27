@@ -11,6 +11,8 @@ class FindAndImport:
     ----------
     directory : str
         a formatted string to print out the directory where the fbx files are located
+    fbx_files : list
+        a list of fbx files to import
 
     Methods
     -------
@@ -79,20 +81,15 @@ class FindAndImport:
                 armature_name = match.group(0)
             print("Armature name [Find And Import]: ", armature_name)
             armature_obj.name = armature_name
-            # Save the main file
-            # bpy.ops.wm.save_mainfile(
-            #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\inplacetest2.blend"
-            # )
-            # Rename the primary action for each of these imported fbxs
-            # Also make them invisible
 
     def run(self):
         """
         The main method that finds and imports the fbx files.
         """
-        # TODO: Make this dynamic
-        files = self.fbx_files  # List of filenames to look up (usually fbx)
-        filepaths = []  # Sequential list of filepaths stored
+        # List of filenames to look up (usually fbx)
+        files = self.fbx_files  
+        # Sequential list of filepaths stored
+        filepaths = []  
         for file_name in files:
             path = self.find_file(file_name)
             if path != None:

@@ -4,6 +4,14 @@ import bpy
 class MakeInvisible:
     """
     A class to make armature objects invisible in the outliner other than "idle"
+
+    ...
+    attributes
+    ----------
+    Methods
+    -------
+    run(self):
+        Makes armature objects invisible in the outliner.
     """
 
     def run(self):

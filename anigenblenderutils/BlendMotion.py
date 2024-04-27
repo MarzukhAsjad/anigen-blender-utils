@@ -22,14 +22,10 @@ class BlendMotion:
         Selects the armature object with the given name
     get_uppermost_nla_track(self, armature_obj):
         Retrieves the uppermost NLA track that contains actions for the given armature object
-    get_last_frame(self, uppermost_track):
-        Retrieves the last frame of the last strip in the given NLA track
     switch_to_nla_editor(self):
         Splits active editor to existing editor and the NLA Editor
-    push_down_action(self, armature_obj, uppermost_track, action, last_frame):
-        Pushes down the given action to the NLA tracks and adjusts the time frames
-    fix_strips_timings(self, armature_obj):
-        Iterates over all the strips in the NLA tracks of the armature and adjusts the start and end time frames of the strips
+    push_down_action(self, armature_obj, uppermost_track, action):
+        Pushes down the given action to the NLA tracks
     run(self):
         Orchestrates the execution of the script
     """
@@ -132,7 +128,7 @@ class BlendMotion:
 
     def push_down_action(self, armature_obj, uppermost_track, action):
         """
-        Pushes down the given action to the NLA tracks and adjusts the time frames
+        Pushes down the given action to the NLA tracks
 
         Parameters:
         - action: The action to push down to the NLA tracks
@@ -141,7 +137,6 @@ class BlendMotion:
         Prints:
         - The name of the pushed-down strip if successful, or a message if the action was not pushed down
         """
-        # Set the correct context for the operator
         # Push down the action to the NLA tracks
         if action is not None:
             track = armature_obj.animation_data.nla_tracks.new()
@@ -158,6 +153,7 @@ class BlendMotion:
 
         if pushed_down_strip is not None:
             print("Push down SUCCESS of strip:", pushed_down_strip.name)
+            # Set auto blend to True
             pushed_down_strip.use_auto_blend = True
         else:
             print("Action not pushed down to NLA tracks.")
