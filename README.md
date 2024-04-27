@@ -59,7 +59,7 @@ This tool helps blend motions in Blender and render the animation with the given
 2. Configure the paths for the import paths, the render output path and other variables in the config.py
 3. Run the program by typing the following command in the shell:
    ```shell
-   blender Xbot.blend --background --python C:\Users\User\Desktop\FYP\blender-utils\main.py
+   blender Xbot.blend --background --python main.py
    ```
 
 ## Contributing
