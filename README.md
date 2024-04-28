@@ -6,6 +6,14 @@
 
 This tool helps blend motions in Blender and render the animation with the given filenames using a local file directory of motion data. The paths for importing of motions, the base blender file with the character and the render path should all be modified. It is important to note that I have tried this with Mixamo Animations only. Essentially the character bones for any motion data will have to match for the the character within the .blend file and the other motions. This uses Non Linear Animation (NLA) from Blender to blend the motions. Also this has only been tested on a Windows and MacOS machine. So unsure if other OS platforms will work the same.
 
+## Motions
+
+To test AniGEN-blender-utils, some motions files have been given in a zip folder. These motions are downlaoded from [MIXAMO](https://www.mixamo.com/). The link for the zip is as follows:
+
+[`Motions-zip`](https://drive.google.com/file/d/1WRxv5IbdIXOPL2ixJ9xUF0IAUkblPilD/view?usp=drive_link)
+
+Use these motions for test purposes by using the names of the files as the motions in the `config.py`.
+
 ## Current Features
 1. Importing FBX files (for the motions) automatically
 2. Blending of in-place motions automatically (Does not support blending of not in-place motions)
