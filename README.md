@@ -25,7 +25,7 @@ Use these motions for test purposes by using the names of the files as the motio
 2. Support for blending non in-place motions so that displacement is properly adjusted
 3. Camera adjustment when doing non in-place motions
 4. Simple environment generations
-5. More support
+5. More support for other versions of Blender
 
 ## Installation
 
