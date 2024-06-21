@@ -84,6 +84,16 @@ class FindAndImport:
     def get_filename_without_extension(self, file_path):
         """
         Get the file name with no backslash or extension
+
+        Parameters
+        ----------
+            file_path : str
+                the path of the file, can be absolute or relative
+
+        Returns
+        -------
+            str
+                base file stripped from extensions
         """
         # Get the base filename from the file path
         base_filename = os.path.basename(file_path)
@@ -92,6 +102,7 @@ class FindAndImport:
         filename_without_extension = os.path.splitext(base_filename)[0]
     
         return filename_without_extension
+
     def run(self):
         """
         The main method that finds and imports the fbx files.
