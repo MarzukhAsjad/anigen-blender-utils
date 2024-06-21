@@ -43,7 +43,7 @@ class RenameAction:
         # Select the armature object
         armature_obj = bpy.data.objects.get(self.armature_name)
         if armature_obj is None or armature_obj.type != "ARMATURE":
-            print("Armature object not found [Rename Action].")
+            print(f"Armature object not found {self.armature_name}");
             return None
         else:
             # Set armature object as the active object

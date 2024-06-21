@@ -77,10 +77,31 @@ class FindAndImport:
             # Rename the armature object using regex and the filename
             armature_obj = bpy.data.objects["Armature"]
             match = re.search(pattern, filepath)
-            if match:
-                armature_name = match.group(0)
+            armature_name = self.get_filename_without_extension(filepath)
             print("Armature name [Find And Import]: ", armature_name)
             armature_obj.name = armature_name
+
+    def get_filename_without_extension(self, file_path):
+        """
+        Get the file name with no backslash or extension
+
+        Parameters
+        ----------
+            file_path : str
+                the path of the file, can be absolute or relative
+
+        Returns
+        -------
+            str
+                base file stripped from extensions
+        """
+        # Get the base filename from the file path
+        base_filename = os.path.basename(file_path)
+    
+        # Remove the extension from the base filename
+        filename_without_extension = os.path.splitext(base_filename)[0]
+    
+        return filename_without_extension
 
     def run(self):
         """
