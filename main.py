@@ -48,10 +48,10 @@ def main():
     )
     renderer.run()
     # Export the armature as FBX
-    export_fbx = Exporter(
-        "idle", Config.RENDER_PATH + '\\', "idle.fbx"
-    )
-    export_fbx.run()
+    # export_fbx = Exporter(
+    #     "idle", Config.RENDER_PATH + '\\', "idle.fbx"
+    # )
+    # export_fbx.run()
     # Saving the main file (not needed for now)
     # bpy.ops.wm.save_mainfile(
     #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\Xbot.blend"
