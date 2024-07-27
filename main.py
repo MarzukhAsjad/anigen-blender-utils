@@ -54,7 +54,7 @@ def main():
     # export_fbx.run()
     # Saving the main file (not needed for now)
     bpy.ops.wm.save_mainfile(
-        filepath="Ybot.blend"
+        filepath="/home/mizookie/anigen-flask-app/Ybot.blend"
     )
 
 
