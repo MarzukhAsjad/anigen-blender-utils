@@ -53,9 +53,9 @@ def main():
     # )
     # export_fbx.run()
     # Saving the main file (not needed for now)
-    # bpy.ops.wm.save_mainfile(
-    #     filepath="C:\\Users\\User\\Desktop\\FYP\\blender-utils\\Xbot.blend"
-    # )
+    bpy.ops.wm.save_mainfile(
+        filepath="Ybot.blend"
+    )
 
 
 if __name__ == "__main__":
