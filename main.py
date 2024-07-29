@@ -45,6 +45,8 @@ def main():
         "FFMPEG",
         1,
         Config.TOTAL_FRAMES,
+        Config.AUDIO_ON,
+        Config.AUDIO_PATH
     )
     renderer.run()
     # Export the armature as FBX
