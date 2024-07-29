@@ -18,10 +18,12 @@ class AnimationRenderer:
         The starting frame for rendering.
     end_frame : int
         The ending frame for rendering.
+    audio_file : str
+        The path to the audio file to include in the animation.
     
     Methods
     -------
-    __init__(output_dir, video_format, start_frame, end_frame)
+    __init__(output_dir, video_format, start_frame, end_frame, audio_file)
         Initialize the AnimationRenderer with the specified settings.
     render()
         Render the animation using the specified settings.
@@ -32,7 +34,7 @@ class AnimationRenderer:
     
     """
 
-    def __init__(self, output_dir, video_format, start_frame, end_frame):
+    def __init__(self, output_dir, video_format, start_frame, end_frame, audio_file):
         """
         Initialize the AnimationRenderer.
 
@@ -41,11 +43,13 @@ class AnimationRenderer:
             video_format (str): The video format for the rendered animation.
             start_frame (int): The starting frame for rendering.
             end_frame (int): The ending frame for rendering.
+            audio_file (str): The path to the audio file to include in the animation.
         """
         self.output_dir = output_dir
         self.video_format = video_format
         self.start_frame = start_frame
         self.end_frame = end_frame
+        self.audio_file = audio_file
 
     def render(self):
         """
@@ -70,6 +74,24 @@ class AnimationRenderer:
         bpy.context.scene.frame_start = self.start_frame
         bpy.context.scene.frame_end = self.end_frame
 
+        # Clear existing sequences
+        bpy.context.scene.sequence_editor_clear()
+
+        # Add a new video sequence editor
+        bpy.context.scene.sequence_editor_create()
+
+        # Add the audio file to the sequence editor
+        bpy.context.scene.sequence_editor.sequences.new_sound(
+            name="Audio",
+            filepath=self.audio_file,
+            channel=1,
+            frame_start=self.start_frame
+        )
+
+        # Enable audio mixing
+        bpy.context.scene.render.ffmpeg.audio_codec = 'AAC'
+        bpy.context.scene.render.ffmpeg.audio_bitrate = 192
+
         # Render the animation
         bpy.ops.render.render(animation=True, write_still=True)
 
@@ -91,9 +113,11 @@ if __name__ == "__main__":
     start_frame = 1
     end_frame = 250
 
+    # Set the audio file path
+    audio_file = "path/to/your/audiofile.mp3"
+
     # Create an instance of the AnimationRenderer class
-    animation_renderer = AnimationRenderer(output_dir, video_format, start_frame, end_frame)
+    animation_renderer = AnimationRenderer(output_dir, video_format, start_frame, end_frame, audio_file)
 
     # Run the animation rendering process
     animation_renderer.run()
-
