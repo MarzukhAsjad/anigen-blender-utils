@@ -19,6 +19,7 @@ Use these motions for test purposes by using the names of the files as the motio
 2. Blending of in-place motions automatically (Does not support blending of not in-place motions)
 3. Rendering the motions automatically using Blender's NLA.
 4. Exporting the final FBX (currently it's buggy and will have to be fixed in a newer version)
+5. Adding Audio into the video (**NEW FEATURE**)
 
 ## Future Features
 1. Fix Exporting the FBX.
